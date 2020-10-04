@@ -37,13 +37,16 @@ body {
 }
 
 .control {
-  width: 320px;
-  height: 260px;
+  width: 200px;
+  height: 100px;
   position: relative;
-  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.controls {
+  margin-top: 2em;
 }
 
 .playground {
