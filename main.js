@@ -1,4 +1,5 @@
 const $btn = document.getElementById("btn-kick");
+const $btn2 = document.getElementById("btn-hit");
 
 const character = {
   name: "Pikachu",
@@ -36,10 +37,42 @@ const {
   damageHP: enemyDamageHP,
 } = enemy;
 
+function counter() {
+  let hits = 0;
+  function countUp() {
+    hits++;
+    return hits;
+  }
+  return countUp;
+}
+
+const joltHits = counter();
+const shockHits = counter();
+
 $btn.addEventListener("click", function () {
   console.log("Kick");
   character.changeHP(random(20));
   enemy.changeHP(random(20));
+
+  let max = 8;
+  let thunderJolt = joltHits();
+  console.log(thunderJolt + " осталось: " + (max - thunderJolt));
+  if (thunderJolt >= max) {
+    $btn.disabled = true;
+  }
+});
+
+$btn2.addEventListener("click", function () {
+  console.log("Hit");
+  character.changeHP(random(30));
+  enemy.changeHP(random(30));
+
+  let max = 4;
+  let thunderShock = shockHits();
+  console.log(thunderShock + " осталось: " + (max - thunderShock));
+  if (thunderShock >= max) {
+    $btn2.disabled = true;
+  }
 });
 
 function init() {
