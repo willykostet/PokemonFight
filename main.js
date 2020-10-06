@@ -34,10 +34,10 @@ const shockHits = counter();
 
 $btn.addEventListener("click", function () {
   console.log("Kick");
-  player1.changeHP(random(20), function (count) {
+  player1.damage(random(20), function (count) {
     console.log(generateLog(player1, player2, count));
   });
-  player2.changeHP(random(20), function (count) {
+  player2.damage(random(20), function (count) {
     console.log(generateLog(player2, player1, count));
   });
 
@@ -51,11 +51,13 @@ $btn.addEventListener("click", function () {
 
 $btn2.addEventListener("click", function () {
   console.log("Hit");
-  player1.changeHP(random(30), function (count) {
+  player1.damage(random(30), function (count) {
     console.log(generateLog(player1, player2, count));
+    player1.damage();
   });
-  player2.changeHP(random(30), function (count) {
+  player2.damage(random(30), function (count) {
     console.log(generateLog(player2, player1, count));
+    player2.damage();
   });
 
   let max = 4;
@@ -66,12 +68,12 @@ $btn2.addEventListener("click", function () {
   }
 });
 
-function changeHP(count) {
+function damage(count) {
   this.hp.current -= count;
-  logger(fightLog);
-  if ((this.hp.current = 0)) {
+  if (this.hp.current <= 0) {
     console.log("Бедный" + this.name + "проиграл бой");
     $btn.disabled = true;
+    $btn2.disabled = true;
   }
 }
 

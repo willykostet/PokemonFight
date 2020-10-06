@@ -17,16 +17,16 @@ class Pokemon extends Selectors {
     this.type = type;
 
     this.renderHP();
-    this.changeHP();
   }
 
-  changeHP = (count) => {
+  changeHP = (count, cb) => {
     this.hp.current -= count;
 
     if (this.hp.current <= 0) {
       this.hp.current = 0;
     }
     this.renderHP();
+    cb && cb(count);
   };
 
   renderHP = () => {
