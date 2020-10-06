@@ -1,8 +1,3 @@
-function init() {
-  player1.changeHP(num);
-  player2.changeHP(num);
-}
-
 import Pokemon from "./pokemon.js";
 import random from "./utils.js";
 
@@ -11,6 +6,7 @@ const player1 = new Pokemon({
   type: "electric",
   hp: 100,
   selectors: "character",
+  changeHP: changeHP,
 });
 
 const player2 = new Pokemon({
@@ -18,6 +14,7 @@ const player2 = new Pokemon({
   type: "fire",
   hp: 100,
   selectors: "enemy",
+  changeHP: changeHP,
 });
 
 const $btn = document.getElementById("btn-kick");
@@ -113,4 +110,3 @@ function generateLog(player1, player2, count) {
 
   return logs[random(logs.length) - 1];
 }
-init();

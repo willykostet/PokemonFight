@@ -20,14 +20,13 @@ class Pokemon extends Selectors {
     this.changeHP();
   }
 
-  changeHP = (count, cb) => {
+  changeHP = (count) => {
     this.hp.current -= count;
 
     if (this.hp.current <= 0) {
       this.hp.current = 0;
     }
     this.renderHP();
-    cb(count);
   };
 
   renderHP = () => {
