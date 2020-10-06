@@ -17,6 +17,7 @@ class Pokemon extends Selectors {
     this.type = type;
 
     this.renderHP();
+    this.changeHP();
   }
 
   changeHP = (count, cb) => {

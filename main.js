@@ -1,3 +1,8 @@
+function init() {
+  player1.changeHP(num);
+  player2.changeHP(num);
+}
+
 import Pokemon from "./pokemon.js";
 import random from "./utils.js";
 
@@ -36,7 +41,7 @@ $btn.addEventListener("click", function () {
     console.log(generateLog(player1, player2, count));
   });
   player2.changeHP(random(20), function (count) {
-    console.log(generateLog(player1, player2, count));
+    console.log(generateLog(player2, player1, count));
   });
 
   let max = 8;
@@ -53,7 +58,7 @@ $btn2.addEventListener("click", function () {
     console.log(generateLog(player1, player2, count));
   });
   player2.changeHP(random(30), function (count) {
-    console.log(generateLog(player1, player2, count));
+    console.log(generateLog(player2, player1, count));
   });
 
   let max = 4;
@@ -66,8 +71,15 @@ $btn2.addEventListener("click", function () {
 
 function changeHP(count) {
   this.hp.current -= count;
+  logger(fightLog);
+  if ((this.hp.current = 0)) {
+    console.log("Бедный" + this.name + "проиграл бой");
+    $btn.disabled = true;
+  }
+}
 
-  const log =
+function logger(logName) {
+  const fightLog =
     this === player2
       ? generateLog(this, player1, count)
       : generateLog(this, player2, count);
@@ -75,16 +87,9 @@ function changeHP(count) {
   const $logs = document.querySelector("#logs");
 
   const $p = document.createElement("p");
-  $p.innerText = log; // вот сюда передать переменную log, которая во втором уроке выводилась в консоль
+  $p.innerText = fightLog; // вот сюда передать переменную log, которая во втором уроке выводилась в консоль
 
   $logs.insertBefore($p, $logs.children[0]);
-
-  if (this.hp.current <= 0) {
-    this.hp.current = 0;
-    console.log("Бедный" + this.name + "проиграл бой");
-    $btn.disabled = true;
-  }
-  this.renderHP();
 }
 
 function generateLog(player1, player2, count) {
@@ -108,3 +113,4 @@ function generateLog(player1, player2, count) {
 
   return logs[random(logs.length) - 1];
 }
+init();
